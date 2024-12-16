@@ -12,6 +12,7 @@ var state : States
 var sound_played : bool
 @export var room_node_paths : Array
 @export var rooms : Array
+var eligible_for_center = [0,1,2,4] # room num is +1 of each of these
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -49,14 +50,23 @@ func state_handler():
 			
 			# randomize the room choice
 			var room_node = get_node(room_node_path)
-			var random_var : int = rng.randi_range(0, len(rooms)-1) # for some reason its -1
+			var random_var : int
 			
-			# ensure this isnt a number picked before
+			# ensure this isnt a number picked before and if center room, its eligible
 			while true:
+				random_var = rng.randi_range(0, len(rooms)-1)
+				
+				# if already picked before
 				if random_var in choice_history:
-					random_var = rng.randi_range(0, len(rooms)-1) 
-				else:
+					continue # go back to top of the loop
+					
+				# if already picked before and not a center room, valid room
+				if room_node.name != "5":
 					break
+				
+				# check if the rand is eligible
+				if random_var in eligible_for_center:
+					break # if eligible, valid room
 			
 			choice_history.append(random_var)
 			
