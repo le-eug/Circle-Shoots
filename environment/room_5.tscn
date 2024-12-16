@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=4 uid="uid://douey3luxc008"]
+
+[ext_resource type="TileSet" uid="uid://c2qmog87n0t7e" path="res://environment/environment_tileset.tres" id="1_fnmei"]
+
+[node name="Room5" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD+//3/AAAAAAAAAAD+//7/AAAAAAAAAAD9//7/AAAAAAAAAAABAP3/AAAAAAAAAAABAP7/AAAAAAAAAAACAP7/AAAAAAAAAAD9/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD+/wIAAAAAAAAAAAABAAIAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAA=")
+tile_set = ExtResource("1_fnmei")

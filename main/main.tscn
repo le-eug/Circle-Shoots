@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0r0m64of1m73"]
+
+[ext_resource type="Script" path="res://main/main_behavior.gd" id="1_3l05n"]
+[ext_resource type="Texture2D" uid="uid://cbwp7vc2qr0xg" path="res://environment/background.png" id="1_7jta4"]
+[ext_resource type="PackedScene" uid="uid://bvxvo5klmceaq" path="res://player/Player.tscn" id="1_v4dsc"]
+[ext_resource type="PackedScene" uid="uid://dymxkueunays7" path="res://environment/environment.tscn" id="2_wc8bq"]
+[ext_resource type="Texture2D" uid="uid://ctx8o6qkn8dir" path="res://environment/environment_tiles.png" id="2_xm6mh"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_3l05n")
+
+[node name="Purple BG" type="Sprite2D" parent="."]
+position = Vector2(3.50006, 2.50002)
+scale = Vector2(129.188, 76.1875)
+texture = ExtResource("2_xm6mh")
+
+[node name="Light BG" type="Sprite2D" parent="."]
+scale = Vector2(53, 53.125)
+texture = ExtResource("1_7jta4")
+
+[node name="Player" parent="." node_paths=PackedStringArray("environment") instance=ExtResource("1_v4dsc")]
+scale = Vector2(0.7, 0.7)
+speed = 200
+environment = NodePath("../Environment")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Environment" parent="." instance=ExtResource("2_wc8bq")]

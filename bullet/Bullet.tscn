@@ -1,17 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdhap01rx7emh"]
+[gd_scene load_steps=5 format=3 uid="uid://cdhap01rx7emh"]
 
-[ext_resource type="Texture2D" uid="uid://1gi8u2nbxgls" path="res://bullet/bullet_sprite.png" id="1_0s3ic"]
+[ext_resource type="Script" path="res://bullet/bullet.gd" id="1_c7xeo"]
+[ext_resource type="Texture2D" uid="uid://cs8fhv388scxd" path="res://player/player_sprite.png" id="2_76jfe"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_nrhts"]
-radius = 8.06226
+[sub_resource type="CircleShape2D" id="CircleShape2D_uhw1y"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a3dwt"]
+radius = 8.0
 
 [node name="RigidBody2D" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 2
 gravity_scale = 0.0
+script = ExtResource("1_c7xeo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_nrhts")
-disabled = true
+shape = SubResource("CircleShape2D_uhw1y")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_a3dwt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.819608, 0.792157, 0.6, 1)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_0s3ic")
+texture = ExtResource("2_76jfe")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
