@@ -1,9 +1,9 @@
 extends Control
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
+	#DialogueManager.show_dialogue_balloon(load("res://dialogue/dialogue.dialogue"), "this_is_a_node_title")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -12,9 +12,19 @@ func _process(delta: float) -> void:
 
 
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://main/main.tscn") 
+	AudioManager.rim_click.play()
+	get_tree().change_scene_to_file("res://intermission/intermission.tscn") 
 
 
 
 func _on_quit_pressed() -> void:
+	AudioManager.rim_click.play()
 	get_tree().quit()
+
+
+func _on_play_mouse_entered() -> void:
+	AudioManager.stick_hit.play()
+
+
+func _on_quit_mouse_entered() -> void:
+	AudioManager.stick_hit.play()

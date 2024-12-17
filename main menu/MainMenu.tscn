@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsq3qxomt7s45"]
+[gd_scene load_steps=5 format=3 uid="uid://bsq3qxomt7s45"]
 
 [ext_resource type="Script" path="res://main menu/main_menu.gd" id="1_c8ceh"]
 [ext_resource type="Texture2D" uid="uid://ctx8o6qkn8dir" path="res://environment/environment_tiles.png" id="1_f5ldk"]
 [ext_resource type="FontFile" uid="uid://b4nqi4tsfdvuv" path="res://font/f25_bank_printer/F25_Bank_Printer.ttf" id="1_xjik1"]
+[ext_resource type="PackedScene" uid="uid://dnr14eeictudq" path="res://audiomanager/audio_manager.tscn" id="4_a21nb"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -11,45 +12,70 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -424.0
-offset_top = -108.0
-offset_right = -424.0
-offset_bottom = -108.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_c8ceh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(112, 28)
 scale = Vector2(200, 84)
 texture = ExtResource("1_f5ldk")
 
-[node name="Title" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_right = 928.0
-offset_bottom = 296.0
-theme_override_fonts/normal_font = ExtResource("1_xjik1")
-theme_override_font_sizes/normal_font_size = 100
-text = "CIRCLE SHOOTS"
-
 [node name="Play" type="Button" parent="."]
-layout_mode = 0
-offset_left = 328.0
-offset_top = 139.0
-offset_right = 536.0
-offset_bottom = 224.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = 107.5
+offset_right = 104.0
+offset_bottom = 192.5
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_xjik1")
 theme_override_font_sizes/font_size = 50
 text = "Play"
 
 [node name="Quit" type="Button" parent="."]
-layout_mode = 0
-offset_left = 328.0
-offset_top = 256.0
-offset_right = 536.0
-offset_bottom = 341.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = 207.5
+offset_right = 104.0
+offset_bottom = 292.5
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_xjik1")
 theme_override_font_sizes/font_size = 50
 text = "Quit"
 
+[node name="AudioManager" parent="." instance=ExtResource("4_a21nb")]
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -442.0
+offset_top = -50.0
+offset_right = 442.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_xjik1")
+theme_override_font_sizes/font_size = 100
+text = "CIRCLE SHOOTS"
+horizontal_alignment = 1
+
+[connection signal="mouse_entered" from="Play" to="." method="_on_play_mouse_entered"]
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="mouse_entered" from="Quit" to="." method="_on_quit_mouse_entered"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

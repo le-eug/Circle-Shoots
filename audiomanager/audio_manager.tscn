@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=3 uid="uid://dnr14eeictudq"]
+
+[ext_resource type="Script" path="res://audiomanager/audio_manager.gd" id="1_hsl6x"]
+[ext_resource type="AudioStream" uid="uid://cwloxl8frgt2q" path="res://sfx/stick_hit.mp3" id="2_cc87n"]
+[ext_resource type="AudioStream" uid="uid://di7ulm4gmmiux" path="res://sfx/rim_click.mp3" id="3_lhl7o"]
+[ext_resource type="AudioStream" uid="uid://cx4ndx65yrk0w" path="res://sfx/bass_drum.mp3" id="4_2bsib"]
+[ext_resource type="AudioStream" uid="uid://drg5adxwtsjn1" path="res://sfx/snare_drum.mp3" id="5_nl42l"]
+[ext_resource type="AudioStream" uid="uid://ggd6v7kfmygo" path="res://sfx/crash.mp3" id="6_k7bpe"]
+[ext_resource type="AudioStream" uid="uid://ci451k8dcxbt" path="res://sfx/hihat.mp3" id="7_jliqu"]
+
+[node name="AudioManager" type="Node2D"]
+script = ExtResource("1_hsl6x")
+
+[node name="StickHit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_cc87n")
+
+[node name="RimClick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_lhl7o")
+
+[node name="BassDrum" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_2bsib")
+
+[node name="SnareDrum" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_nl42l")
+
+[node name="Crash" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_k7bpe")
+
+[node name="HiHat" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_jliqu")

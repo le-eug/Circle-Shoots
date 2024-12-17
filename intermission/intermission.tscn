@@ -1,0 +1,147 @@
+[gd_scene load_steps=7 format=3 uid="uid://cv047mx2nwmx1"]
+
+[ext_resource type="Texture2D" uid="uid://ctx8o6qkn8dir" path="res://environment/environment_tiles.png" id="1_iiqsk"]
+[ext_resource type="FontFile" uid="uid://b4nqi4tsfdvuv" path="res://font/f25_bank_printer/F25_Bank_Printer.ttf" id="1_u7c7m"]
+[ext_resource type="Script" path="res://intermission/intermission.gd" id="1_vfbev"]
+
+[sub_resource type="Animation" id="Animation_efypc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Message:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Level:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_tgewp"]
+resource_name = "intermission"
+length = 5.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 2.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"play_bass"
+}, {
+"args": [],
+"method": &"play_snare"
+}, {
+"args": [],
+"method": &"proceed_to_main"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Message:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Level:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_flxbp"]
+_data = {
+"RESET": SubResource("Animation_efypc"),
+"intermission": SubResource("Animation_tgewp")
+}
+
+[node name="Intermission" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vfbev")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-7, 25.5)
+scale = Vector2(200, 84)
+texture = ExtResource("1_iiqsk")
+
+[node name="Message" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = -75.5
+offset_right = 136.0
+offset_bottom = -24.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_u7c7m")
+theme_override_font_sizes/font_size = 50
+text = "Welcome."
+horizontal_alignment = 1
+
+[node name="Level" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.0
+offset_top = 24.5
+offset_right = 119.0
+offset_bottom = 75.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_u7c7m")
+theme_override_font_sizes/font_size = 50
+text = "Level #
+
+"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_flxbp")
+}

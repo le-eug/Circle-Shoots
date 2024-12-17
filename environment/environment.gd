@@ -3,6 +3,7 @@ extends Node2D
 enum States {
 	DARK, 
 	RANDOMIZE, 
+	REVEALING_ROOMS,
 	PLAYING, 
 	WON, 
 	LOST,
@@ -16,29 +17,14 @@ var eligible_for_center = [0,1,2,4] # room num is +1 of each of these
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	state = States.DARK
+	state = States.RANDOMIZE
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	state_handler()
+	state_handler(delta)
 
 var rng = RandomNumberGenerator.new()
-func state_handler():
-	if state == States.DARK:
-		pass
-		
-		# play sound effect if not alrdy played 
-		
-		# make screen dark
-		
-		# timer before displaying text
-		
-		# display the text
-		
-		# set played to true
-		
-		# set to state: randomize 
-		state = States.RANDOMIZE
+func state_handler(delta):
 		
 	if state == States.RANDOMIZE:
 		
@@ -77,8 +63,11 @@ func state_handler():
 			add_child(room_choice)
 			room_choice.position = room_node.position
 		
-		# go to state: playing
-		state = States.PLAYING
+		# go to state: revealing rooms
+		state = States.REVEALING_ROOMS
+		
+	if state == States.REVEALING_ROOMS:
+		pass
 		
 	if state == States.PLAYING:
 		pass
@@ -95,13 +84,11 @@ func state_handler():
 		pass
 		
 		# increment level by 1 
+		GameState.level += 1
 		
-		# go back to state: dark
-		state = States.DARK
+		get_tree().change_scene_to_file("res://intermission/intermission.tscn")
 		
 	if state == States.LOST:
 		
-		# go back to state: dark
-		state = States.DARK
-		
+		get_tree().change_scene_to_file("res://intermission/intermission.tscn")
 		pass
