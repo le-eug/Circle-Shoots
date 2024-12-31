@@ -26,3 +26,6 @@ func create_populations_by_level():
 			current_value = base_value
 		
 		populations_by_level.append(population_array.duplicate()) # must use duplicate as to not change the previous indices of populations_by_level
+
+func _enter_tree() -> void:
+	create_populations_by_level()

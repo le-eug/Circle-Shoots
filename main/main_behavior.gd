@@ -25,13 +25,20 @@ func play_crash():
 
 func spawn_enemies():
 	
-	# temporary code
-	var enemy_instance = shoot_enemy.instantiate()
-	add_child(enemy_instance)
-	enemies.append(enemy_instance)
-	enemy_instance.global_position = Vector2(144,290)
-	
 	# spawn enemies based on populations_by_level
+	for i in range(GameState.populations_by_level[GameState.level-1][0]):
+		print("making basic enemy")
+		var enemy_instance = basic_enemy.instantiate()
+		add_child(enemy_instance)
+		enemies.append(enemy_instance)
+		# set position
+	
+	for i in range(GameState.populations_by_level[GameState.level-1][1]):
+		var enemy_instance = basic_enemy.instantiate()
+		add_child(enemy_instance)
+		enemies.append(enemy_instance)
+		
+		# set position
 	
 	# for ever enemy, set their state to playing
 	for enemy in enemies:
