@@ -72,16 +72,14 @@ func state_handler(delta):
 	if state == States.PLAYING:
 		pass
 		
-		# disable the darkness
-		
-		# summon enemies, if not already
-		
 		# if all the enemies are dead, won
 		
 		# if player dead, lost 
 		
 	if state == States.WON:
-		pass
+		
+		# game state is won
+		GameState.state = GameState.States.WON
 		
 		# increment level by 1 
 		GameState.level += 1
@@ -89,6 +87,9 @@ func state_handler(delta):
 		get_tree().change_scene_to_file("res://intermission/intermission.tscn")
 		
 	if state == States.LOST:
+		
+		# game state is lost
+		GameState.state = GameState.States.LOST
 		
 		get_tree().change_scene_to_file("res://intermission/intermission.tscn")
 		pass

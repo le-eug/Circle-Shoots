@@ -6,3 +6,4 @@ extends Node2D
 @onready var snare_drum = $SnareDrum
 @onready var crash = $Crash
 @onready var hihat = $HiHat
+@onready var shoot = $Shoot

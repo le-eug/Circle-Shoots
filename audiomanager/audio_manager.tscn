@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dnr14eeictudq"]
+[gd_scene load_steps=10 format=3 uid="uid://dnr14eeictudq"]
 
 [ext_resource type="Script" path="res://audiomanager/audio_manager.gd" id="1_hsl6x"]
 [ext_resource type="AudioStream" uid="uid://cwloxl8frgt2q" path="res://sfx/stick_hit.mp3" id="2_cc87n"]
@@ -7,6 +7,12 @@
 [ext_resource type="AudioStream" uid="uid://drg5adxwtsjn1" path="res://sfx/snare_drum.mp3" id="5_nl42l"]
 [ext_resource type="AudioStream" uid="uid://ggd6v7kfmygo" path="res://sfx/crash.mp3" id="6_k7bpe"]
 [ext_resource type="AudioStream" uid="uid://ci451k8dcxbt" path="res://sfx/hihat.mp3" id="7_jliqu"]
+[ext_resource type="AudioStream" uid="uid://0l8fj3iurber" path="res://sfx/shoot1.mp3" id="8_7aquf"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vuhnv"]
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("8_7aquf")
 
 [node name="AudioManager" type="Node2D"]
 script = ExtResource("1_hsl6x")
@@ -28,3 +34,7 @@ stream = ExtResource("6_k7bpe")
 
 [node name="HiHat" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_jliqu")
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_vuhnv")
+volume_db = -10.0
