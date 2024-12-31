@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://b0r0m64of1m73"]
+[gd_scene load_steps=11 format=3 uid="uid://b0r0m64of1m73"]
 
 [ext_resource type="Script" path="res://main/main_behavior.gd" id="1_3l05n"]
 [ext_resource type="Texture2D" uid="uid://cbwp7vc2qr0xg" path="res://environment/background.png" id="1_7jta4"]
 [ext_resource type="PackedScene" uid="uid://bvxvo5klmceaq" path="res://player/Player.tscn" id="1_v4dsc"]
 [ext_resource type="PackedScene" uid="uid://dymxkueunays7" path="res://environment/environment.tscn" id="2_wc8bq"]
 [ext_resource type="Texture2D" uid="uid://ctx8o6qkn8dir" path="res://environment/environment_tiles.png" id="2_xm6mh"]
+[ext_resource type="Script" path="res://dodge-bar/dodge_bar.gd" id="6_8sw5s"]
+[ext_resource type="Texture2D" uid="uid://m7v6swmbikqw" path="res://1x1.png" id="6_ynr1t"]
 
 [sub_resource type="Animation" id="Animation_6jxgg"]
 length = 0.001
@@ -288,6 +290,7 @@ scale = Vector2(53, 53.125)
 texture = ExtResource("1_7jta4")
 
 [node name="Player" parent="." node_paths=PackedStringArray("environment") instance=ExtResource("1_v4dsc")]
+modulate = Color(0.945098, 0.941176, 0.894118, 1)
 scale = Vector2(0.7, 0.7)
 speed = 200
 environment = NodePath("../Environment")
@@ -348,3 +351,65 @@ texture = ExtResource("2_xm6mh")
 libraries = {
 "": SubResource("AnimationLibrary_0tinc")
 }
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DodgeBarArea" type="Node2D" parent="UI" node_paths=PackedStringArray("player")]
+position = Vector2(64, 980)
+script = ExtResource("6_8sw5s")
+player = NodePath("../../Player")
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/DodgeBarArea"]
+position = Vector2(200, 0)
+scale = Vector2(400, 30)
+texture = ExtResource("6_ynr1t")
+
+[node name="EnemySpawnPoints" type="Node2D" parent="."]
+
+[node name="1" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(-144, -288)
+
+[node name="2" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(144, -288)
+
+[node name="3" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(-288, -144)
+
+[node name="4" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(0, -144)
+
+[node name="5" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(288, -144)
+
+[node name="6" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(-144, 0)
+
+[node name="7" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(144, 4)
+
+[node name="8" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(-288, 144)
+
+[node name="9" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(0, 144)
+
+[node name="10" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(288, 144)
+
+[node name="11" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(-144, 288)
+
+[node name="12" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(144, 288)

@@ -1,6 +1,5 @@
 extends RigidBody2D
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -12,4 +11,16 @@ func _process(delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	
+	if "Enemy" in body.name:
+		body.state = body.States.DEAD
+	
+	if !("Player" in body.name):
+		return
+	
+	if body.state == body.States.DODGING:
+		return
+	
+	body.state = body.States.DEAD
+	
 	queue_free()

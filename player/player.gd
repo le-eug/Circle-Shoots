@@ -11,12 +11,19 @@ var state : States
 
 @export var environment : Node2D
 
-@onready var timer = $Timer
+@onready var shoot_timer = $ShootTimer
 var can_shoot : bool
+
+var default_speed
+var dodging_speed
+var dodging_multiplier = 1.5
+
+@onready var dodge_timer = $DodgingTimer
 
 func basic_movement():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	velocity = input_direction.normalized() * speed
+	move_and_slide()
 	
 func rotate_gun():
 	gun.look_at(get_global_mouse_position())
@@ -34,13 +41,10 @@ func shoot_handler():
 		# play sfx
 		AudioManager.shoot.play()
 		
-		# timer for cooldown
+		# shoot_timer for cooldown
 		can_shoot = false
-		timer.start()
+		shoot_timer.start()
 
-var default_speed
-var dodging_speed
-var dodging_multiplier = 1.3
 func _ready() -> void:
 	can_shoot = true
 	state = States.INITIAL
@@ -48,7 +52,7 @@ func _ready() -> void:
 	default_speed = speed
 	dodging_speed = dodging_multiplier * speed
 
-func _physics_process(delta):	
+func _physics_process(delta):
 	
 	if state == States.INITIAL:
 		
@@ -63,34 +67,41 @@ func _physics_process(delta):
 	if state == States.MOVING:
 		
 		speed = default_speed
+		modulate.a = 1
 		
 		shoot_handler()
 		basic_movement()
-		move_and_slide()
 		
 		# dodging
 		if Input.is_action_just_pressed("dodge"):
 			state = States.DODGING
+			dodge_timer.start()
 	
 	if state == States.DODGING:
 		
 		speed = dodging_speed
+		modulate.a = 0.5
 		
 		basic_movement()
-		move_and_slide()
 		
 		# spawn transparent after-images
+		
+		# play dodging audio
 		
 		if Input.is_action_just_released("dodge"):
 			state = States.MOVING
 	
 	if state == States.DEAD:
-		pass
+		environment.state = environment.States.LOST
 	
 	# allow player to rotate gun unless dead
 	if state != States.DEAD:
 		rotate_gun()
 
 
-func _on_timer_timeout() -> void:
+func _on_shoot_timer_timeout() -> void:
 	can_shoot = true
+
+
+func _on_dodging_timer_timeout() -> void:
+	state = States.MOVING
