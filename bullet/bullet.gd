@@ -12,10 +12,11 @@ func _process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	
-	if "Enemy" in body.name:
+	if "Enemy" in body.name or "CharacterBody2D" in body.name:
 		body.state = body.States.DEAD
 	
 	if !("Player" in body.name):
+		queue_free()
 		return
 	
 	if body.state == body.States.DODGING:

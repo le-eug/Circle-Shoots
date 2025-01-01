@@ -10,6 +10,7 @@ radius = 7.0
 radius = 8.0
 
 [node name="EnemyBullet" type="RigidBody2D"]
+modulate = Color(0.894118, 0.415686, 0.509804, 1)
 collision_layer = 0
 collision_mask = 0
 gravity_scale = 0.0
@@ -27,7 +28,6 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_a3dwt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.0588235, 1, 1, 1)
 texture = ExtResource("2_m5bjn")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

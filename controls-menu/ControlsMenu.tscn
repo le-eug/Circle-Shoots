@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://nd02gfycuikj"]
+
+[ext_resource type="Texture2D" uid="uid://ctx8o6qkn8dir" path="res://environment/environment_tiles.png" id="1_2wybj"]
+[ext_resource type="Script" path="res://controls-menu/controls_menu.gd" id="1_vwggd"]
+[ext_resource type="FontFile" uid="uid://b4nqi4tsfdvuv" path="res://font/f25_bank_printer/F25_Bank_Printer.ttf" id="2_p7wsy"]
+
+[node name="ControlsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vwggd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(984, 568)
+scale = Vector2(200, 84)
+texture = ExtResource("1_2wybj")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 976.0
+offset_right = 482.0
+offset_bottom = 1061.0
+theme_override_fonts/font = ExtResource("2_p7wsy")
+theme_override_font_sizes/font_size = 35
+text = "Back to Main Menu"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 304.0
+offset_right = 1778.0
+offset_bottom = 679.0
+theme_override_fonts/font = ExtResource("2_p7wsy")
+theme_override_font_sizes/font_size = 50
+text = "WASD to move.
+
+Mouse and Left Mouse Button to Aim and Shoot.
+
+Space to dodge.
+
+Bar on lower left will indicate the dodge timer. "
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

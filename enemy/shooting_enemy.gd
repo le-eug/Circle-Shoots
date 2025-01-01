@@ -18,7 +18,7 @@ func state_handler(delta: float) -> void:
 	rotate_toward_player()
 	
 	if state == States.INITIAL:
-		pass
+		return
 	
 	if state == States.CHASE:
 		
@@ -41,6 +41,7 @@ func state_handler(delta: float) -> void:
 	if state == States.DEAD:
 		
 		visible = false
+		shoot_timer.stop()
 
 func movement(delta : float) -> void:
 	var dir = nav_agent.get_next_path_position() - global_position
@@ -62,6 +63,10 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	state_handler(delta)
+	
+	if !ray.get_collider():
+		return
+	
 	condition_for_attack = ray.get_collider().name == player.name
 
 

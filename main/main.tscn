@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b0r0m64of1m73"]
+[gd_scene load_steps=12 format=3 uid="uid://b0r0m64of1m73"]
 
 [ext_resource type="Script" path="res://main/main_behavior.gd" id="1_3l05n"]
 [ext_resource type="Texture2D" uid="uid://cbwp7vc2qr0xg" path="res://environment/background.png" id="1_7jta4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ctx8o6qkn8dir" path="res://environment/environment_tiles.png" id="2_xm6mh"]
 [ext_resource type="Script" path="res://dodge-bar/dodge_bar.gd" id="6_8sw5s"]
 [ext_resource type="Texture2D" uid="uid://m7v6swmbikqw" path="res://1x1.png" id="6_ynr1t"]
+[ext_resource type="PackedScene" uid="uid://bj8eltd7fntdv" path="res://pause-menu/PauseMenu.tscn" id="8_uvwau"]
 
 [sub_resource type="Animation" id="Animation_6jxgg"]
 length = 0.001
@@ -277,6 +278,7 @@ _data = {
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_3l05n")
+enemy_spawn_points = [NodePath("EnemySpawnPoints/1"), NodePath("EnemySpawnPoints/2"), NodePath("EnemySpawnPoints/3"), NodePath("EnemySpawnPoints/4"), NodePath("EnemySpawnPoints/5"), NodePath("EnemySpawnPoints/6"), NodePath("EnemySpawnPoints/7"), NodePath("EnemySpawnPoints/8"), NodePath("EnemySpawnPoints/9"), NodePath("EnemySpawnPoints/10"), NodePath("EnemySpawnPoints/11"), NodePath("EnemySpawnPoints/12")]
 
 [node name="Purple BG" type="Sprite2D" parent="."]
 z_index = -1
@@ -290,7 +292,6 @@ scale = Vector2(53, 53.125)
 texture = ExtResource("1_7jta4")
 
 [node name="Player" parent="." node_paths=PackedStringArray("environment") instance=ExtResource("1_v4dsc")]
-modulate = Color(0.945098, 0.941176, 0.894118, 1)
 scale = Vector2(0.7, 0.7)
 speed = 200
 environment = NodePath("../Environment")
@@ -413,3 +414,7 @@ position = Vector2(-144, 288)
 
 [node name="12" type="Node2D" parent="EnemySpawnPoints"]
 position = Vector2(144, 288)
+
+[node name="PauseMenu" parent="." node_paths=PackedStringArray("environment") instance=ExtResource("8_uvwau")]
+visible = false
+environment = NodePath("../Environment")

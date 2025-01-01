@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://bie1hvd8e1fi3"]
+
+[ext_resource type="Script" path="res://end-screen/end_screen.gd" id="1_3cdfp"]
+[ext_resource type="Texture2D" uid="uid://ctx8o6qkn8dir" path="res://environment/environment_tiles.png" id="1_p08nd"]
+[ext_resource type="FontFile" uid="uid://b4nqi4tsfdvuv" path="res://font/f25_bank_printer/F25_Bank_Printer.ttf" id="2_k2n6w"]
+
+[node name="EndScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3cdfp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(984, 568)
+scale = Vector2(200, 84)
+texture = ExtResource("1_p08nd")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 456.0
+offset_right = 1614.0
+offset_bottom = 507.0
+theme_override_fonts/font = ExtResource("2_k2n6w")
+theme_override_font_sizes/font_size = 50
+text = "Congratulaions! You beat Circle Shoots."
+
+[node name="MainMenu" type="Button" parent="."]
+layout_mode = 0
+offset_left = 736.0
+offset_top = 600.0
+offset_right = 1176.0
+offset_bottom = 672.0
+theme_override_fonts/font = ExtResource("2_k2n6w")
+theme_override_font_sizes/font_size = 35
+text = "Back to Main Menu"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 880.0
+offset_top = 688.0
+offset_right = 1024.0
+offset_bottom = 760.0
+theme_override_fonts/font = ExtResource("2_k2n6w")
+theme_override_font_sizes/font_size = 35
+text = "Quit"
+
+[connection signal="mouse_entered" from="MainMenu" to="." method="_on_main_menu_mouse_entered"]
+[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="mouse_entered" from="Quit" to="." method="_on_quit_mouse_entered"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

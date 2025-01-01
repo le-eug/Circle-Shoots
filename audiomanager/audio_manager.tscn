@@ -15,6 +15,7 @@ streams_count = 1
 stream_0/stream = ExtResource("8_7aquf")
 
 [node name="AudioManager" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_hsl6x")
 
 [node name="StickHit" type="AudioStreamPlayer2D" parent="."]

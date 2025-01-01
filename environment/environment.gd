@@ -81,6 +81,15 @@ func state_handler(delta):
 		# game state is won
 		GameState.state = GameState.States.WON
 		
+		# end of game
+		const MAX_LEVEL = 35
+		if GameState.level == MAX_LEVEL:
+			get_tree().change_scene_to_file("res://end-screen/EndScreen.tscn")
+			
+			GameState.level = 1
+			GameState.state = GameState.States.INITIAL
+			return
+		
 		# increment level by 1 
 		GameState.level += 1
 		

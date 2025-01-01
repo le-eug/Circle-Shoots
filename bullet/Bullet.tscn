@@ -10,6 +10,7 @@ radius = 7.0
 radius = 8.0
 
 [node name="Bullet" type="RigidBody2D"]
+modulate = Color(0.945098, 0.941176, 0.894118, 1)
 collision_layer = 0
 collision_mask = 0
 gravity_scale = 0.0
@@ -26,7 +27,6 @@ collision_mask = 5
 shape = SubResource("CircleShape2D_a3dwt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.819608, 0.792157, 0.6, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_76jfe")
 
